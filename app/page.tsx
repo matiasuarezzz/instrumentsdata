@@ -1,6 +1,6 @@
 "use client";
 
-import { upload } from "@vercel/blob/client";
+import { uploadPresigned } from "@vercel/blob/client";
 import {
   ArrowUpRight,
   Check,
@@ -122,7 +122,7 @@ export default function Home() {
 
     setIsSaving(true);
     try {
-      const blob = await upload(photo.name, photo, {
+      const blob = await uploadPresigned(photo.name, photo, {
         access: "public",
         handleUploadUrl: "/api/uploads",
       });

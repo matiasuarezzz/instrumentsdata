@@ -6,15 +6,15 @@ Aplicación web en español para registrar y consultar instrumentos. Guarda en c
 
 - Next.js App Router y TypeScript
 - Vercel Postgres para los registros
-- Vercel Blob para las fotos (JPG, PNG o WebP de hasta 5 MB)
+- Vercel Blob público para las fotos (JPG, PNG o WebP de hasta 5 MB), con carga presignada y autenticación OIDC de Vercel
 
 La tabla `instruments` se crea automáticamente al consultar o guardar el primer registro.
 
 ## Configuración en Vercel
 
 1. Importá este repositorio como proyecto en Vercel.
-2. En el Marketplace de Vercel, conectá una base de datos PostgreSQL y un almacén Blob al proyecto.
-3. Confirmá que las variables `POSTGRES_URL` y `BLOB_READ_WRITE_TOKEN` estén disponibles en los entornos de Preview y Production. Para desarrollo local, completá `.env.local` usando `.env.example` como guía o sincronizá las variables del proyecto con la CLI de Vercel.
+2. Conectá una base PostgreSQL al proyecto. Creá también un almacén Blob con acceso **público** y conectalo al proyecto para Production y Preview; el SDK necesita `BLOB_STORE_ID` y la autenticación OIDC que Vercel administra.
+3. Confirmá que `POSTGRES_URL` esté disponible en Production y Preview. Para desarrollo local, ejecutá `vercel env pull` para obtener las variables de conexión y OIDC; no copies tokens al cliente ni al repositorio.
 4. Desplegá el proyecto. No hace falta ejecutar una migración manual.
 
 ## Desarrollo local
