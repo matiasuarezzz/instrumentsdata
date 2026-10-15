@@ -3,8 +3,6 @@ import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-export const runtime = "nodejs";
-
 const instrumentSchema = z.object({
   uploadedBy: z.string().trim().min(1).max(120),
   instrumentName: z.string().trim().min(1).max(120),
